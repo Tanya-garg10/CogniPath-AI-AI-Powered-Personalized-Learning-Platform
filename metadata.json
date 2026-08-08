@@ -1,0 +1,6 @@
+{
+  "name": "CogniPath – The Misconception Mapper",
+  "description": "AI-powered adaptive learning EdTech platform that maps student misconceptions, provides personalized AI tutoring, and delivers real-time analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
