@@ -1,20 +1,48 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+  <h1>CogniPath AI</h1>
+  <p><strong>AI-Powered Personalized Learning Platform</strong></p>
 </div>
 
-# Run and deploy your AI Studio app
+CogniPath AI is an intelligent, personalized learning platform that adapts to your learning pace and style. Built using modern web technologies and AI, it provides tailored educational paths to help users achieve their learning goals more effectively.
 
-This contains everything you need to run your app locally.
+## Features
+- 🧠 **AI-Powered Learning Paths**: Dynamically adapts to your progress.
+- 🎨 **Interactive UI/UX**: Sleek, modern interface for a distraction-free experience.
+- 📊 **Real-time Feedback**: Detailed analytics on your learning journey.
 
-View your app in AI Studio: https://ai.studio/apps/cecaed33-00e1-4665-892f-a701608c617b
+## Getting Started
 
-## Run Locally
+**Prerequisites:** Node.js
 
-**Prerequisites:**  Node.js
+### Installation
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Tanya-garg10/CogniPath-AI-AI-Powered-Personalized-Learning-Platform.git
+   ```
+2. Navigate into the directory:
+   ```bash
+   cd CogniPath-AI-AI-Powered-Personalized-Learning-Platform
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Set up environment variables:
+   Create a `.env.local` file (or copy `.env.example`) and add your API keys (e.g., `GEMINI_API_KEY`).
+   
+5. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech Stack
+- React
+- Vite
+- Tailwind CSS
+- Google Gemini API
+- Express
+- TypeScript
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
