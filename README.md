@@ -18,15 +18,11 @@
 
 </div>
 
----
-
 ## 🌟 Overview
 
 Traditional learning platforms treat errors as simple right/wrong binary states. **CogniPath AI** goes deeper by identifying the **exact cognitive misconception** behind a student's mistake—whether it's a *Sign Error*, *Distribution Error*, *Formula Misuse*, or a fundamental *Conceptual Misunderstanding*.
 
 By combining real-time step analysis, voice-dictated reasoning, dynamic gamification, and interactive study rooms, CogniPath AI delivers a truly personalized learning journey for students while giving teachers actionable classroom insights.
-
----
 
 ## 🏗️ System Architecture
 
@@ -51,8 +47,6 @@ By combining real-time step analysis, voice-dictated reasoning, dynamic gamifica
                                +-----------------+     +---------------------+
 ```
 
----
-
 ## ✨ Key Features
 
 | Feature | Description |
@@ -64,8 +58,6 @@ By combining real-time step analysis, voice-dictated reasoning, dynamic gamifica
 | 👩‍🏫 **Teacher Dashboard** | View class-wide analytics, identify common misconceptions, and generate targeted assignments. |
 | 🏆 **Gamification System** | Points, badges, achievements, and leaderboard mechanics to keep students motivated. |
 | 👥 **Virtual Study Rooms** | Real-time collaborative environments with WebSocket support for group learning sessions. |
-
----
 
 ## 🔬 Diagnostic Categories
 
@@ -79,8 +71,6 @@ The AI Diagnostic Engine classifies student errors into 7 precise categories:
 6. 💡 **Conceptual Misunderstanding** – Invalid operations like dividing by zero or illegal exponent rules.
 7. ✅ **None** – Fully correct step execution.
 
----
-
 ## 📡 API Endpoints
 
 | Method | Endpoint | Description |
@@ -88,16 +78,12 @@ The AI Diagnostic Engine classifies student errors into 7 precise categories:
 | `GET` | `/api/health` | Health check & service status. |
 | `POST` | `/api/analyze-solution` | Analyzes student solution steps & voice dictation for cognitive misconceptions. |
 
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** React 19, Vite 6, Tailwind CSS 4, TypeScript, Recharts, Framer Motion, Lucide Icons
 - **Backend:** Node.js, Express, WebSockets (`ws`)
 - **AI Integrations:** `@google/genai` (Gemini API), `groq-sdk` (Groq API)
 - **Tooling:** `tsx`, `esbuild`, `dotenv`
-
----
 
 ## 🚦 Getting Started
 
@@ -137,8 +123,6 @@ The AI Diagnostic Engine classifies student errors into 7 precise categories:
 5. **Open in Browser:**
    Navigate to `http://localhost:3000`
 
----
-
 ## 📂 Directory Structure
 
 ```
@@ -166,13 +150,9 @@ CogniPath-AI/
 └── vite.config.ts         # Vite build settings
 ```
 
----
-
 ## 📄 License
 
 Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
-
----
 
 <div align="center">
   <sub>Built with ❤️ for personalized AI education.</sub>
