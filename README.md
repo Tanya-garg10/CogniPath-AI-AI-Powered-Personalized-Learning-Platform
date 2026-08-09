@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" width="100%" alt="CogniPath AI Banner" />
   <h1>CogniPath AI</h1>
   <p><strong>AI-Powered Personalized Learning Platform & Cognitive Diagnostic Engine</strong></p>
 </div>
