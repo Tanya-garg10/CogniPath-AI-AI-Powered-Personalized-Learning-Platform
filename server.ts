@@ -335,6 +335,86 @@ Return a JSON object with keys:
   }
 });
 
+// Endpoint 2.5: Interactive Socratic Chat Assistant
+app.post('/api/socratic-chat', async (req, res) => {
+  try {
+    const { queryText, history } = req.body;
+    if (!queryText) {
+      return res.status(400).json({ error: 'queryText is required' });
+    }
+
+    const systemPrompt = `You are CogniPath AI Socratic Math Tutor, an engaging, intuitive, and highly intelligent mathematics mentor.
+Your primary goals:
+1. Provide a direct, crystal-clear, and engaging explanation answering the user's specific math question (e.g. if asked "Explain 2(x+3) with an analogy", explain distributing 2 across (x+3) using a real-world gift bag or combo meal analogy!).
+2. Avoid generic template responses or superficial evasions. Always explain the core mathematical "why" and "how".
+3. Formulate a thoughtful Socratic question at the end to guide the student to discover deeper connections.
+
+Return a JSON object with:
+"reply": string (Clear, thorough, engaging explanation addressing the student's question directly with step-by-step reasoning and intuitive examples),
+"socraticQuestion": string (A follow-up reflection question asking the student to apply or test the concept),
+"analogy": string (A short, memorable 1-2 sentence real-world analogy or mental model summary)
+`;
+
+    const groq = getGroq();
+    if (groq) {
+      const messages: any[] = [
+        { role: 'system', content: systemPrompt },
+      ];
+
+      if (Array.isArray(history)) {
+        for (const h of history) {
+          if (h.text) {
+            messages.push({
+              role: h.role === 'user' ? 'user' : 'assistant',
+              content: h.text
+            });
+          }
+        }
+      }
+
+      messages.push({ role: 'user', content: queryText });
+
+      const completion = await groq.chat.completions.create({
+        messages,
+        model: 'llama-3.3-70b-versatile',
+        response_format: { type: 'json_object' }
+      });
+
+      const rawText = completion.choices[0]?.message?.content || '{}';
+      return res.json(JSON.parse(rawText));
+    }
+
+    // Fallback Gemini
+    const ai = getAI();
+    const prompt = `${systemPrompt}\n\nStudent Question: "${queryText}"`;
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.6-flash',
+      contents: prompt,
+      config: {
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            reply: { type: Type.STRING },
+            socraticQuestion: { type: Type.STRING },
+            analogy: { type: Type.STRING }
+          }
+        }
+      }
+    });
+
+    const parsed = JSON.parse(response.text || '{}');
+    return res.json(parsed);
+  } catch (err: any) {
+    console.error('Error in /api/socratic-chat:', err);
+    return res.status(500).json({
+      reply: `When exploring "${req.body.queryText || 'math concepts'}", algebra represents real-world balance! Whatever factor sits outside parentheses distributes evenly to every single item inside.`,
+      socraticQuestion: "What do you think happens if the number outside the parentheses is negative?",
+      analogy: "💡 Think of parentheses like a sealed box: the number outside multiplier acts on everything packed inside!"
+    });
+  }
+});
+
 // Endpoint 3: Multimodal Handwritten Solution Solver & OCR
 app.post('/api/solve-from-image', async (req, res) => {
   try {
@@ -969,3 +1049,4 @@ async function main() {
 main().catch((err) => {
   console.error('Failed to start server:', err);
 });
+
