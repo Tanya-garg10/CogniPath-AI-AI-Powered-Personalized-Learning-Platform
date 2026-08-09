@@ -98,23 +98,29 @@ export const AITutorStudioView: React.FC<AITutorStudioViewProps> = ({ user, onNa
     setIsAsking(true);
 
     try {
-      const response = await fetch('/api/ai-tutor', {
+      const response = await fetch('/api/socratic-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          misconceptionType: 'Socratic Conceptual Question',
-          problemEquation: 'Concept Query',
-          studentAttempt: textToSend,
+          queryText: textToSend,
+          history: messages.slice(-6).map((m) => ({
+            role: m.sender === 'user' ? 'user' : 'assistant',
+            text: m.text,
+          })),
         }),
       });
 
       const data = await response.json();
 
+      const replyText = data.reply || data.socraticHint || data.simpleExplanation;
+      const questionText = data.socraticQuestion ? `\n\n🤔 Socratic Reflection: ${data.socraticQuestion}` : '';
+      const fullText = replyText ? `${replyText}${questionText}` : `Great question about "${textToSend}"! Let's explore why this mathematical concept works step-by-step.`;
+
       const tutorMsg: ChatMessage = {
         id: `tut_${Date.now()}`,
         sender: 'tutor',
-        text: data.socraticHint || data.conceptualBreakdown || `Great question about "${textToSend}"! Let's think step by step: Why do you think terms behave this way when we isolate them?`,
-        analogy: data.realWorldAnalogy ? `🌍 Real-World Analogy: ${data.realWorldAnalogy}` : undefined,
+        text: fullText,
+        analogy: data.analogy ? `💡 Analogy: ${data.analogy}` : (data.realLifeAnalogy ? `🌍 Analogy: ${data.realLifeAnalogy}` : undefined),
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
 
@@ -360,3 +366,4 @@ export const AITutorStudioView: React.FC<AITutorStudioViewProps> = ({ user, onNa
     </div>
   );
 };
+
