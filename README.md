@@ -1,49 +1,115 @@
 <div align="center">
-  <h1>CogniPath AI</h1>
-  <p><strong>AI-Powered Personalized Learning Platform & Cognitive Diagnostic Engine</strong></p>
+
+# 🧠 CogniPath AI
+### *AI-Powered Personalized Learning Platform & Cognitive Diagnostic Engine*
+
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Express](https://img.shields.io/badge/Express-4.21-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![Groq](https://img.shields.io/badge/AI_Engine-Groq_Llama--3.3-f34f29?logo=groq&logoColor=white)](https://groq.com/)
+[![Gemini](https://img.shields.io/badge/AI_Engine-Google_Gemini_3.6-8E75B2?logo=google&logoColor=white)](https://ai.google.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+<br />
+
+*CogniPath AI is an next-generation adaptive educational platform that diagnoses student mathematical & conceptual misconceptions in real-time using advanced Multimodal Large Language Models.*
+
 </div>
 
-CogniPath AI is an intelligent, personalized learning platform that adapts to a student's learning pace and style. By utilizing advanced AI models (Groq Llama-3.3 and Google Gemini), it dynamically identifies cognitive misconceptions, tracks learning analytics, and provides tailored educational paths to help users achieve their learning goals more effectively.
+---
+
+## 🌟 Overview
+
+Traditional learning platforms treat errors as simple right/wrong binary states. **CogniPath AI** goes deeper by identifying the **exact cognitive misconception** behind a student's mistake—whether it's a *Sign Error*, *Distribution Error*, *Formula Misuse*, or a fundamental *Conceptual Misunderstanding*.
+
+By combining real-time step analysis, voice-dictated reasoning, dynamic gamification, and interactive study rooms, CogniPath AI delivers a truly personalized learning journey for students while giving teachers actionable classroom insights.
 
 ---
 
-## 🚀 Key Features
+## 🏗️ System Architecture
 
-- **🧠 Real-Time Cognitive Diagnostic Engine**
-  - Analyzes step-by-step problem-solving (written and dictated verbal reasoning).
-  - Categorizes mistakes into specific cognitive misconceptions (e.g., *Sign Error*, *Distribution Error*, *Conceptual Misunderstanding*).
-- **🎓 AI Tutor Studio & Problem Solver**
-  - Interactive environments for students to solve math problems with live AI guidance.
-- **📊 Comprehensive Dashboards**
-  - **Student Dashboard:** View learning paths, analytics, and track progress.
-  - **Teacher Dashboard:** Monitor student performance, identify class-wide misconceptions, and adapt teaching strategies.
-  - **Admin Dashboard:** Platform management and insights.
-- **🎮 Gamification & Study Rooms**
-  - Built-in gamified elements to keep students engaged.
-  - Virtual study rooms for focused, collaborative, or guided learning.
-- **⚡ Dual AI Engine Architecture**
-  - Uses **Groq Llama-3.3-70B** for lightning-fast primary cognitive analysis.
-  - Gracefully falls back to **Google Gemini** for robust multimodal generation.
+```
+                                  +---------------------------------------+
+                                  |         CogniPath Frontend            |
+                                  |  (React 19, Vite, Tailwind, Motion)   |
+                                  +-------------------+-------------------+
+                                                      |
+                                       HTTP / REST    |   WebSockets
+                                                      v
+                                  +-------------------+-------------------+
+                                  |         CogniPath Express Server      |
+                                  |            (TypeScript / Node)        |
+                                  +---------+-------------------+---------+
+                                            |                   |
+                           Primary Engine   |                   |  Fallback Engine
+                                            v                   v
+                               +------------+----+     +--------+------------+
+                               |   Groq AI API   |     |  Google Gemini API  |
+                               | (Llama-3.3-70B) |     |  (Gemini-3.6-Flash) |
+                               +-----------------+     +---------------------+
+```
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Key Features
 
-- **Frontend:** React, Vite, Tailwind CSS, TypeScript, Framer Motion, Recharts, Lucide Icons.
-- **Backend:** Node.js, Express, WebSockets (for real-time communication).
-- **AI/LLMs:** 
-  - `@google/genai` (Google Gemini API)
-  - `groq-sdk` (Groq Llama API)
+| Feature | Description |
+| :--- | :--- |
+| 🧩 **Cognitive Diagnostic Engine** | Evaluates student problem-solving steps & voice reasoning to detect exact error categories (Sign Error, Distribution Error, etc.). |
+| 🤖 **AI Tutor Studio** | Conversational AI math tutor providing step-by-step hints without spoiling answers directly. |
+| ✏️ **Interactive Problem Solver** | Workspace for step-by-step mathematical problem solving with real-time feedback. |
+| 📊 **Student Dashboard & Analytics** | Tracks progress, mastery levels, streak counters, and skill proficiency over time. |
+| 👩‍🏫 **Teacher Dashboard** | View class-wide analytics, identify common misconceptions, and generate targeted assignments. |
+| 🏆 **Gamification System** | Points, badges, achievements, and leaderboard mechanics to keep students motivated. |
+| 👥 **Virtual Study Rooms** | Real-time collaborative environments with WebSocket support for group learning sessions. |
+
+---
+
+## 🔬 Diagnostic Categories
+
+The AI Diagnostic Engine classifies student errors into 7 precise categories:
+
+1. ➕ **Sign Error** – Incorrect handling of positive/negative signs (e.g., $-2 \times -3 = -6$).
+2. 📐 **Formula Misuse** – Misapplying algebraic identities or equations.
+3. 🔤 **Variable Confusion** – Combining non-like terms (e.g., $2x + 3 = 5x$).
+4. 🔢 **Arithmetic Error** – Basic calculation mistakes (e.g., $7 \times 8 = 54$).
+5. ✖️ **Distribution Error** – Failing to distribute across parentheses (e.g., $2(x+3) \to 2x+3$).
+6. 💡 **Conceptual Misunderstanding** – Invalid operations like dividing by zero or illegal exponent rules.
+7. ✅ **None** – Fully correct step execution.
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Health check & service status. |
+| `POST` | `/api/analyze-solution` | Analyzes student solution steps & voice dictation for cognitive misconceptions. |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React 19, Vite 6, Tailwind CSS 4, TypeScript, Recharts, Framer Motion, Lucide Icons
+- **Backend:** Node.js, Express, WebSockets (`ws`)
+- **AI Integrations:** `@google/genai` (Gemini API), `groq-sdk` (Groq API)
+- **Tooling:** `tsx`, `esbuild`, `dotenv`
 
 ---
 
 ## 🚦 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/en/) (v18+ recommended)
-- A Groq API Key and/or Google Gemini API Key.
 
-### Installation
+- **Node.js** (v18 or higher recommended)
+- **npm** or **bun** / **yarn**
+- **API Keys**: At least one of the following:
+  - [Groq API Key](https://console.groq.com/) *(Recommended for ultra-fast diagnostics)*
+  - [Google Gemini API Key](https://aistudio.google.com/)
+
+### Installation & Setup
 
 1. **Clone the repository:**
    ```bash
@@ -56,32 +122,58 @@ CogniPath AI is an intelligent, personalized learning platform that adapts to a 
    npm install
    ```
 
-3. **Set up environment variables:**
-   Create a `.env` or `.env.local` file in the root directory (you can use `.env.example` as a reference) and add your API keys:
+3. **Configure Environment Variables:**
+   Create a `.env` file in the project root:
    ```env
-   GEMINI_API_KEY=your_gemini_api_key_here
    GROQ_API_KEY=your_groq_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
-4. **Run the development server:**
+4. **Start the Development Server:**
    ```bash
    npm run dev
    ```
 
-5. **Access the application:**
-   Open your browser and navigate to `http://localhost:3000` (or the port specified in your console).
+5. **Open in Browser:**
+   Navigate to `http://localhost:3000`
 
 ---
 
-## 📂 Project Structure
+## 📂 Directory Structure
 
-- `/src/pages`: Contains the main views (`StudentDashboard`, `TeacherDashboardView`, `ProblemSolverView`, `GamificationView`, etc.)
-- `/src/components`: Reusable UI components.
-- `/server.ts`: Express backend serving the API and WebSocket connections.
-- `/src/App.tsx`: Main routing and layout.
+```
+CogniPath-AI/
+├── src/
+│   ├── components/        # Reusable UI components
+│   ├── data/              # Mock datasets & initial states
+│   ├── pages/             # Main application views
+│   │   ├── AITutorStudioView.tsx
+│   │   ├── AdminDashboardView.tsx
+│   │   ├── GamificationView.tsx
+│   │   ├── LandingPage.tsx
+│   │   ├── ProblemSolverView.tsx
+│   │   ├── StudentAnalyticsView.tsx
+│   │   ├── StudentDashboard.tsx
+│   │   ├── StudyRoomView.tsx
+│   │   └── TeacherDashboardView.tsx
+│   ├── App.tsx            # Main application router & state manager
+│   ├── main.tsx           # React DOM entry point
+│   ├── types.ts           # Global TypeScript interfaces
+│   └── index.css          # Tailwind CSS imports & global styles
+├── server.ts              # Express API & WebSocket backend
+├── package.json           # Scripts & project dependencies
+├── tsconfig.json          # TypeScript configuration
+└── vite.config.ts         # Vite build settings
+```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ for personalized AI education.</sub>
+</div>
